@@ -1,0 +1,3 @@
+[web]
+web-rhel ansible_host=10.0.0.20
+web-ubnt ansible_host=10.0.0.10

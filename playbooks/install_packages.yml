@@ -1,0 +1,5 @@
+---
+- hosts: web
+  roles:
+    - install_packages
+  become: yes

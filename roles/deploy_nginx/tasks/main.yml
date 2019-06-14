@@ -26,7 +26,7 @@
 
 - name : config nginx CentOS
   template:
-    src:
+    src: cntnginx.conf.j2
     dest: /etc/nginx/ngix.conf
   when : ansible_os_family == RedHat
   notify:
@@ -35,7 +35,7 @@
 
 - name : config nginx Ubuntu
   template:
-    src:
+    src: ubn-nginx.conf.j2
     dest: /etc/nginx/nginx.conf
   when : ansible_os_family == Debian
   notify:
@@ -53,6 +53,9 @@
   template:
     src: index.html.j2
     dest: /var/www/content/index.html
+  notify:
+    - reload_nginx
+  tags : create_content
   
 
 

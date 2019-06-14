@@ -1,3 +1,4 @@
+---
 - name: Information of system
   shell: "uname -a"
   tags: uname

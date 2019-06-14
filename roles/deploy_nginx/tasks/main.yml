@@ -1,0 +1,46 @@
+---
+- name : Install Epel-repo
+  yum:
+    name : epel-release
+    state : present
+  when : ansible_os_family == RedHat
+  tags : install_epel
+
+- name : Install nginx on CentOS from epel
+  yum:
+    name : nginx
+    state : latest
+  when : ansible_os_family == RedHat
+  notify: 
+    - restart_nginx
+  tags : install_nginx_centos
+
+- name : Install nginx on Ubuntu
+  apt:
+    name : nginx
+    state : latest
+  when : ansible_os_family == Debian
+  notify:
+   - restart_nginx
+  tags : install_nginx_ubuntu
+
+- name : config nginx CentOS
+  template:
+    src:
+    dest:
+  when : ansible_os_family == RedHat
+  notify:
+   - reload_nginx
+  tags : config_nginx
+
+- name : config nginx Ubuntu
+  template:
+    src:
+    dest:
+  when : ansible_os_family == Debian
+  notify:
+   - reload_nginx
+  tags : config_nginx
+
+
+

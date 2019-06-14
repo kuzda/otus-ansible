@@ -32,13 +32,13 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
-        listen       80 default_server;
+        listen       {{ nginx_port }} default_server;
         listen       [::]:80 default_server;
         server_name  _;
-        root         /usr/share/nginx/html;
+        root         {{ nginx_content }};
 
         # Load configuration files for the default server block.
-        include /etc/nginx/default.d/*.conf;
+        #include /etc/nginx/default.d/*.conf;
 
         location / {
         }

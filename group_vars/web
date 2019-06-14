@@ -1,3 +1,4 @@
 ansible_ssh_user : vagrant
 ansible_ssh_pass : vagrant
 nginx_port : 8080
+nginx_content : /var/www/content

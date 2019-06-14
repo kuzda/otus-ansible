@@ -21,26 +21,38 @@
     state : latest
   when : ansible_os_family == Debian
   notify:
-   - restart_nginx
+    - restart_nginx
   tags : install_nginx_ubuntu
 
 - name : config nginx CentOS
   template:
     src:
-    dest:
+    dest: /etc/nginx/ngix.conf
   when : ansible_os_family == RedHat
   notify:
-   - reload_nginx
+    - reload_nginx
   tags : config_nginx
 
 - name : config nginx Ubuntu
   template:
     src:
-    dest:
+    dest: /etc/nginx/nginx.conf
   when : ansible_os_family == Debian
   notify:
-   - reload_nginx
+    - reload_nginx
   tags : config_nginx
 
+- name : create direcrory for content
+  file:
+   path: {{ nginx_content }}
+   state: directory
+   owner: root
+   group: root
+
+- name : config custom index file
+  template:
+    src: index.html.j2
+    dest: /var/www/content/index.html
+  
 
 

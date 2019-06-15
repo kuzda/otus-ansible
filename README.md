@@ -5,8 +5,8 @@
 + ##### install_packages (устанавливает некоторое количество ПО)
 
 Для каждой роли создана свой playbook, со следующими именами (названия говорят сами за себя):
-+ #####nginx_deploy
-+ #####install_packages
++ #### nginx_deploy
++ #### install_packages
 
 ## Usage:
 

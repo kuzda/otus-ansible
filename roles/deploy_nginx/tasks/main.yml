@@ -3,14 +3,14 @@
   yum:
     name : epel-release
     state : present
-  when : ansible_os_family == RedHat
+  when : ansible_os_family == "RedHat"
   tags : install_epel
 
 - name : Install nginx on CentOS from epel
   yum:
     name : nginx
     state : latest
-  when : ansible_os_family == RedHat
+  when : ansible_os_family == "RedHat"
   notify: 
     - restart_nginx
   tags : install_nginx_centos
@@ -19,7 +19,7 @@
   apt:
     name : nginx
     state : latest
-  when : ansible_os_family == Debian
+  when : ansible_os_family == "Debian"
   notify:
     - restart_nginx
   tags : install_nginx_ubuntu
@@ -27,8 +27,8 @@
 - name : config nginx CentOS
   template:
     src: cntnginx.conf.j2
-    dest: /etc/nginx/ngix.conf
-  when : ansible_os_family == RedHat
+    dest: /etc/nginx/nginx.conf
+  when : ansible_os_family == "RedHat"
   notify:
     - reload_nginx
   tags : config_nginx
@@ -37,17 +37,18 @@
   template:
     src: ubn-nginx.conf.j2
     dest: /etc/nginx/nginx.conf
-  when : ansible_os_family == Debian
+  when : ansible_os_family == "Debian"
   notify:
     - reload_nginx
   tags : config_nginx
 
 - name : create direcrory for content
   file:
-   path: {{ nginx_content }}
-   state: directory
-   owner: root
-   group: root
+    path: '{{ nginx_content }}'
+    state: directory
+    owner: root
+    group: root
+    mode : '0755'
 
 - name : config custom index file
   template:

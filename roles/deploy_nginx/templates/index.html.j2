@@ -15,10 +15,11 @@
 <p>If you see this page, the nginx web server is successfully installed and
 working.</p>
 
-<p>Server is working:
+<p>Server is working: <br>
 Server name is {{ ansible_nodename }} <br>
 Number of cores is {{ ansible_processor_cores }} <br>
-OS is {{ ansible_lsb.description }} <br>
+Total memory: {{ ansible_memtotal_mb }} Mb<br>
+Family OS is {{ ansible_os_family }} <br>
 </p>
 
 <p><em>Thank you for using nginx.</em></p>
